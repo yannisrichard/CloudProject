@@ -35,7 +35,7 @@ public class CompteBancaire {
 	 * Montant du compte
 	 */
     @Persistent
-	private float montant;
+	private double montant;
 	
 	/**
 	 * Risque du transfert montant du compte
@@ -75,11 +75,11 @@ public class CompteBancaire {
 		this.compte = compte;
 	}
 
-	public float getMontant() {
+	public double getMontant() {
 		return montant;
 	}
 
-	public void setMontant(float montant) {
+	public void setMontant(double montant) {
 		this.montant = montant;
 	}
 
@@ -91,7 +91,7 @@ public class CompteBancaire {
 		this.risque = risque;
 	}
 
-	public CompteBancaire(String nom, String prenom, String compte, float montant, String risque) {
+	public CompteBancaire(String nom, String prenom, String compte, double montant, String risque) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;

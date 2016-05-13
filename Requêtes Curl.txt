@@ -1,0 +1,32 @@
+********************************************************************************************
+********************************Service AccManagerSvc***************************************
+********************************************************************************************
+
+Lister les comptes (Normalement vide)
+curl -XGET "http://1-dot-accmanagersvc.appspot.com/rest/CompteBancaire/listerCompte"
+
+Creer le compte de Toto avec 1000.0 en montant 
+curl -d -xPOST "http://1-dot-accmanagersvc.appspot.com/rest/CompteBancaire/creerCompte?nom=Asticot&prenom=Toto&compte=compteDeToto&montant=1000.0"
+
+Creer un second compte pour la liste 
+curl -d -xPOST "http://1-dot-accmanagersvc.appspot.com/rest/CompteBancaire/creerCompte?nom=Lasticot&prenom=Coco&compte=CompteACoco&montant=2000.0"
+
+Creer un troisieme compte pour la liste 
+curl -d -xPOST "http://1-dot-accmanagersvc.appspot.com/rest/CompteBancaire/creerCompte?nom=LeGaulois&prenom=Provencal&compte=CompteAProvencal&montant=1.0"
+
+Get le compte de Toto
+curl -XGET "http://1-dot-accmanagersvc.appspot.com/rest/CompteBancaire/getCompte/compteDeToto-Asticot"
+
+Lister les comptes
+curl -XGET "http://1-dot-accmanagersvc.appspot.com/rest/CompteBancaire/listerCompte"
+
+Supprime le compte de Toto en GET
+curl -XGET "http://1-dot-accmanagersvc.appspot.com/rest/CompteBancaire/supprimerCompte/compteDeToto-Asticot"
+
+Supprime le compte de Coco en DELETE
+curl -XDELETE "http://1-dot-accmanagersvc.appspot.com/rest/CompteBancaire/supprimerCompte/CompteACoco-Lasticot"
+
+	
+********************************************************************************************
+********************************Service AppManagerSvc***************************************
+********************************************************************************************
