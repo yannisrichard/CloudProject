@@ -30,3 +30,9 @@ curl -XDELETE "http://1-dot-accmanagersvc.appspot.com/rest/CompteBancaire/suppri
 ********************************************************************************************
 ********************************Service AppManagerSvc***************************************
 ********************************************************************************************
+Lister les approvals (Normalement vide)
+curl -XGET "http://1-dot-appmanagersvc.appspot.com/rest/Approval/listerApproval"
+
+Creer le compte de Toto avec 1000.0 en montant 
+curl -d -xPOST "http://1-dot-appmanagersvc.appspot.com/rest/Approval/creerApproval?nom=ApprovaldeCoco&reponse=approved"
+

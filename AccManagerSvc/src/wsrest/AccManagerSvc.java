@@ -2,7 +2,6 @@ package wsrest;
 
 import java.util.List;
 import javax.jdo.PersistenceManager;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -11,7 +10,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.google.appengine.api.datastore.Key;
@@ -50,9 +48,9 @@ public class AccManagerSvc {
 	        Key key = KeyFactory.createKey(CompteBancaire.class.getSimpleName(), nouveauCompte.getCompte()+"-"+nouveauCompte.getNom());
 			nouveauCompte.setKey(key);
 			pm.makePersistent(nouveauCompte);
-			return Response.status(200).entity("Le compte de "+nouveauCompte.getNom() +" a été crée avec succés ").build();
+			return Response.status(200).entity("Le compte de "+nouveauCompte.getNom() +" a été crée avec succés ").header("Access-Control-Allow-Origin", "*").build();
 		} catch (Exception e) {
-			return Response.status(500).entity("Le service AccManagerSvc a rencontré un probléme :" + e.getMessage()).build();
+			return Response.status(500).entity("Le service AccManagerSvc a rencontré un probléme :" + e.getMessage()).header("Access-Control-Allow-Origin", "*").build();
 		}
 	}
 	
@@ -74,9 +72,9 @@ public class AccManagerSvc {
 			GsonBuilder builder = new GsonBuilder();
 		    Gson gson = builder.create();
 		    String retour = gson.toJson(compte);	
-			return Response.status(200).entity(retour).build();
+			return Response.status(200).entity(retour).header("Access-Control-Allow-Origin", "*").build();
 		} catch (Exception e) {
-			return Response.status(500).entity("Le service AccManagerSvc a rencontré un probléme :" + e.getMessage()).build();
+			return Response.status(500).entity("Le service AccManagerSvc a rencontré un probléme :" + e.getMessage()).header("Access-Control-Allow-Origin", "*").build();
 		}
 	}
 	
@@ -103,9 +101,9 @@ public class AccManagerSvc {
 		    else {
 				retour="La liste de compte est vide";
 			}
-		    return Response.status(200).entity(retour).build();
+		    return Response.status(200).entity(retour).header("Access-Control-Allow-Origin", "*").build();
 		} catch (Exception e) {
-			return Response.status(500).entity("Le service AccManagerSvc a rencontré un probléme :" + e.getMessage()).build();
+			return Response.status(500).entity("Le service AccManagerSvc a rencontré un probléme :" + e.getMessage()).header("Access-Control-Allow-Origin", "*").build();
 		}	
 	}	
 	
@@ -125,9 +123,9 @@ public class AccManagerSvc {
 		    CompteBancaire cpt = pm.getObjectById(CompteBancaire.class, k);
 		    
 			pm.deletePersistent(cpt);
-			return Response.status(200).entity("Le compte a bien été supprimé.").build();
+			return Response.status(200).entity("Le compte a bien été supprimé.").header("Access-Control-Allow-Origin", "*").build();
 		} catch (Exception e) {
-			return Response.status(500).entity("Le service AccManagerSvc a rencontré un probléme :" + e.getMessage()).build();
+			return Response.status(500).entity("Le service AccManagerSvc a rencontré un probléme :" + e.getMessage()).header("Access-Control-Allow-Origin", "*").build();
 		}
 	}
 	
@@ -147,9 +145,9 @@ public class AccManagerSvc {
 		    CompteBancaire cpt = pm.getObjectById(CompteBancaire.class, k);
 
 		    pm.deletePersistent(cpt);
-			return Response.status(200).entity("Le compte a bien été supprimé.").build();
+			return Response.status(200).entity("Le compte a bien été supprimé.").header("Access-Control-Allow-Origin", "*").build();
 		} catch (Exception e) {
-			return Response.status(500).entity("Le service AccManagerSvc a rencontré un probléme :" + e.getMessage()).build();
+			return Response.status(500).entity("Le service AccManagerSvc a rencontré un probléme :" + e.getMessage()).header("Access-Control-Allow-Origin", "*").build();
 		}
 	}
 	
