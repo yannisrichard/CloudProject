@@ -19,7 +19,8 @@ Projet de Cloud Computing 2016
 Adresses des différents webservices :
 -----------------------
 
-hhttp://1-dot-accmanagersvc.appspot.com/
+http://1-dot-accmanagersvc.appspot.com/
+
 http://1-dot-appmanagersvc.appspot.com/
 https://checkaccountsvcyannisrichard.herokuapp.com/
 https://loanapprovalsvcyannisrichard.herokuapp.com/
