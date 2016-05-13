@@ -3,10 +3,12 @@ package wsrest;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
@@ -77,5 +79,73 @@ public class AppManagerSvc {
 			return Response.status(500).entity("Le service AppManagerSvc a rencontré un probléme :" + e.getMessage()).header("Access-Control-Allow-Origin", "*").build();
 		}	
 	}	
+	
+	/**
+	 * Get l'approval avec l'id (=nom) en paramètre
+	 * 
+	 * @param idApproval
+	 * @return Response text 
+	 */
+	@GET
+	@Produces("text/plain")
+	@Path("getApproval/{idApproval}")
+	public Response getApproval(@PathParam("idApproval") String idApproval) 
+	{
+		try {
+		    Key k = KeyFactory.createKey(Approval.class.getSimpleName(), idApproval);
+		    Approval approval = pm.getObjectById(Approval.class, k);
+			
+			GsonBuilder builder = new GsonBuilder();
+		    Gson gson = builder.create();
+		    String retour = gson.toJson(approval);	
+			return Response.status(200).entity(retour).header("Access-Control-Allow-Origin", "*").build();
+		} catch (Exception e) {
+			return Response.status(500).entity("Le service AppManagerSvc a rencontré un probléme :" + e.getMessage()).header("Access-Control-Allow-Origin", "*").build();
+		}
+	}
+	
+	/**
+	 * Supprime l'approval avec l'id (=nom) en paramétre
+	 * 
+	 * @param idApproval
+	 * @return Response text 
+	 */
+	@GET
+	@Path("supprimerApproval/{idApproval}")
+	@Produces("text/plain")
+	public Response delApproval(@PathParam("idApproval") String idApproval)
+	{
+		try {
+		    Key k = KeyFactory.createKey(Approval.class.getSimpleName(), idApproval);
+		    Approval approval = pm.getObjectById(Approval.class, k);
+		    
+			pm.deletePersistent(approval);
+			return Response.status(200).entity("L'approval a bien été supprimé.").header("Access-Control-Allow-Origin", "*").build();
+		} catch (Exception e) {
+			return Response.status(500).entity("Le service AppManagerSvc a rencontré un probléme :" + e.getMessage()).header("Access-Control-Allow-Origin", "*").build();
+		}
+	}
+	
+	/**
+	 * Supprime l'approval avec l'id (=nom) en paramétre à l'aide du verbe HTTP DELETE
+	 * 
+	 * @param idApproval
+	 * @return Response text 
+	 */
+	@DELETE
+	@Path("supprimerApproval/{idApproval}")
+	@Produces("text/plain")
+	public Response delApprovalBis(@PathParam("idApproval") String idApproval)
+	{
+		try {
+		    Key k = KeyFactory.createKey(Approval.class.getSimpleName(), idApproval);
+		    Approval approval = pm.getObjectById(Approval.class, k);
+
+		    pm.deletePersistent(approval);
+			return Response.status(200).entity("L'approval a bien été supprimé.").header("Access-Control-Allow-Origin", "*").build();
+		} catch (Exception e) {
+			return Response.status(500).entity("Le service AppManagerSvc a rencontré un probléme :" + e.getMessage()).header("Access-Control-Allow-Origin", "*").build();
+		}
+	}
 	
 }

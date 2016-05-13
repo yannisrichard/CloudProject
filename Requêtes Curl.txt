@@ -33,6 +33,24 @@ curl -XDELETE "http://1-dot-accmanagersvc.appspot.com/rest/CompteBancaire/suppri
 Lister les approvals (Normalement vide)
 curl -XGET "http://1-dot-appmanagersvc.appspot.com/rest/Approval/listerApproval"
 
-Creer le compte de Toto avec 1000.0 en montant 
+Creer l'approval de Coco approved 
 curl -d -xPOST "http://1-dot-appmanagersvc.appspot.com/rest/Approval/creerApproval?nom=ApprovaldeCoco&reponse=approved"
+
+Creer l'approval de Toto refused 
+curl -d -xPOST "http://1-dot-appmanagersvc.appspot.com/rest/Approval/creerApproval?nom=ApprovaldeToto&reponse=refused"
+
+Creer l'approval de Provencal approved 
+curl -d -xPOST "http://1-dot-appmanagersvc.appspot.com/rest/Approval/creerApproval?nom=ApprovaldeProvencal&reponse=approved"
+
+Get le compte de Coco
+curl -XGET "http://1-dot-appmanagersvc.appspot.com/rest/Approval/getApproval/ApprovaldeCoco"
+
+Lister les approvals
+curl -XGET "http://1-dot-appmanagersvc.appspot.com/rest/Approval/listerApproval"
+
+Supprime l'approval de Coco en GET
+curl -XGET "http://1-dot-appmanagersvc.appspot.com/rest/Approval/supprimerApproval/ApprovaldeCoco"
+
+Supprime l'approval de Toto en DELETE
+curl -XDELETE "http://1-dot-appmanagersvc.appspot.com/rest/Approval/supprimerApproval/ApprovaldeToto"
 
