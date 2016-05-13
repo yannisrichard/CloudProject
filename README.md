@@ -19,7 +19,8 @@ Projet de Cloud Computing 2016
 Adresses des différents webservices :
 -----------------------
 
-hhttp://1-dot-accmanagersvc.appspot.com/
+http://1-dot-accmanagersvc.appspot.com/
+
 http://1-dot-appmanagersvc.appspot.com/
 
 Le fichier "Requêtes Curl" contient les requêtes curl permettant de tester l'applications
