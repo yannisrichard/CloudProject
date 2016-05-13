@@ -9,9 +9,9 @@ Projet de Cloud Computing 2016
 
 - AppManagerSvc sur Google App Engine.
 
-- CheckAccount sur Heroku. (pas encore implémenté).
+- CheckAccount sur Heroku.
 
-- LoanApproval sur Heroku. (pas encore implémenté).
+- LoanApproval sur Heroku.
 
 - Base de données noSQL (Heroku pas encore implémenté)
 
@@ -21,5 +21,7 @@ Adresses des différents webservices :
 
 hhttp://1-dot-accmanagersvc.appspot.com/
 http://1-dot-appmanagersvc.appspot.com/
+https://checkaccountsvcyannisrichard.herokuapp.com/
+https://loanapprovalsvcyannisrichard.herokuapp.com/
 
 Le fichier "Requêtes Curl" contient les requêtes curl permettant de tester l'applications
