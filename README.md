@@ -22,7 +22,9 @@ Adresses des différents webservices :
 http://1-dot-accmanagersvc.appspot.com/
 
 http://1-dot-appmanagersvc.appspot.com/
+
 https://checkaccountsvcyannisrichard.herokuapp.com/
+
 https://loanapprovalsvcyannisrichard.herokuapp.com/
 
 Le fichier "Requêtes Curl" contient les requêtes curl permettant de tester l'applications
