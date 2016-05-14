@@ -100,6 +100,7 @@ public class AccManagerSvc {
 	    	}
 		    else {
 				retour="La liste de compte est vide";
+				return Response.status(204).entity(retour).build();
 			}
 		    return Response.status(200).entity(retour).header("Access-Control-Allow-Origin", "*").build();
 		} catch (Exception e) {
