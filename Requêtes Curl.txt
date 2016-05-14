@@ -59,6 +59,8 @@ curl -XDELETE "http://1-dot-appmanagersvc.appspot.com/rest/Approval/supprimerApp
 ********************************************************************************************
 ********************************Service CheckAccount***************************************
 ********************************************************************************************
+curl -XGET "http://checkaccountsvcyannisrichard.herokuapp.com/checkaccount/getrisque/CompteAProvencal-LeGaulois"
+
 
 
 

@@ -44,7 +44,15 @@ public class AccManagerSvc {
 			, @DefaultValue("") @QueryParam("compte") String compte, @DefaultValue("0") @QueryParam("montant") double montant)
 	{
 		try {	
-			CompteBancaire nouveauCompte = new CompteBancaire(nom, prenom, compte, montant, "");
+			String risque = "";
+			if (montant < 10000){
+				risque = "low risk";
+			}
+			else {
+				risque = "high risk";
+			}
+
+			CompteBancaire nouveauCompte = new CompteBancaire(nom, prenom, compte, montant, risque);
 	        Key key = KeyFactory.createKey(CompteBancaire.class.getSimpleName(), nouveauCompte.getCompte()+"-"+nouveauCompte.getNom());
 			nouveauCompte.setKey(key);
 			pm.makePersistent(nouveauCompte);
