@@ -64,5 +64,28 @@ curl -XDELETE "http://1-dot-appmanagersvc.appspot.com/rest/Approval/supprimerApp
 
 
 ********************************************************************************************
-********************************Service CheckAccount***************************************
+********************************Service LoanApproval***************************************
 ********************************************************************************************
+checkaccountsvcyannisrichard
+
+mvn archetype:generate -DarchetypeArtifactId=jersey-heroku-webapp -DarchetypeGroupId=org.glassfish.jersey.archetypes -DinteractiveMode=false -DgroupId=wsrest -DartifactId=CheckAccountSvc -Dpackage=wsrest -DarchetypeVersion=2.22.
+
+cd checkaccount
+
+mvn clean package
+
+git init
+
+heroku create
+
+git add src/ pom.xml Procfile system.properties
+
+git commit -m "Initial commit"
+
+git push heroku master
+
+
+ Changer addresse heroku, site heroku puis remote git :
+ git remote -v
+ heroku git:remote -a checkaccountsvcyannisrichard
+
