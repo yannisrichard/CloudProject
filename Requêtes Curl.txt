@@ -55,39 +55,15 @@ Supprime l'approval de Toto en DELETE
 curl -XDELETE "http://1-dot-appmanagersvc.appspot.com/rest/Approval/supprimerApproval/ApprovaldeToto"
 
 
-
 ********************************************************************************************
-********************************Service CheckAccount***************************************
+********************************Service CheckAccount****************************************
 ********************************************************************************************
 curl -XGET "http://checkaccountsvcyannisrichard.herokuapp.com/checkaccount/getrisque/CompteAProvencal-LeGaulois"
 
 
-
-
-
 ********************************************************************************************
-********************************Service LoanApproval***************************************
+********************************Service LoanApproval****************************************
 ********************************************************************************************
-checkaccountsvcyannisrichard
+curl -d -xPOST "http://loanapprovalsvcyannisrichard.herokuapp.com/loanapproval/getcredit?idCompte=ApprovaldeProvencal&solde=5000"
 
-mvn archetype:generate -DarchetypeArtifactId=jersey-heroku-webapp -DarchetypeGroupId=org.glassfish.jersey.archetypes -DinteractiveMode=false -DgroupId=wsrest -DartifactId=CheckAccountSvc -Dpackage=wsrest -DarchetypeVersion=2.22.
-
-cd checkaccount
-
-mvn clean package
-
-git init
-
-heroku create
-
-git add src/ pom.xml Procfile system.properties
-
-git commit -m "Initial commit"
-
-git push heroku master
-
-
- Changer addresse heroku, site heroku puis remote git :
- git remote -v
- heroku git:remote -a checkaccountsvcyannisrichard
-
+curl -d -xPOST "http://loanapprovalsvcyannisrichard.herokuapp.com/loanapproval/getcredit?idCompte=ApprovaldeProvencal&solde=15000"

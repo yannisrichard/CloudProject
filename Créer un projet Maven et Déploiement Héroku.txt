@@ -1,0 +1,37 @@
+Créer un projet Maven et Déploiement Héroku :
+1) Créer projet :
+mvn archetype:generate -DarchetypeArtifactId=jersey-heroku-webapp -DarchetypeGroupId=org.glassfish.jersey.archetypes -DinteractiveMode=false -DgroupId=wsrest -DartifactId=LoanApprovalSvc -Dpackage=wsrest -DarchetypeVersion=2.22
+
+2) Se déplacer sur le projet créer : 
+cd checkaccount
+
+3) Ajouter les dépendances :
+mvn clean install
+
+3bis) Mettre à jour les dépendances
+mvn clean package
+
+4) Initialiser un dépôt git et heroku :
+git init
+heroku create
+
+5) Ajouter fichiers minimales
+git add src/ pom.xml Procfile system.properties
+
+5bis) Ajouter tous
+git add -A
+
+6) Commit
+git commit -m "commit"
+
+7) Push
+git push heroku master
+
+8) Optionnel - Changer url heroku :
+Après nous sommes aller sur le site d'heroku, https://dashboard.heroku.com/apps/, puis sur le service que nous avons crée et changer son nom pour checkaccountsvcyannisrichard et loanapprovalsvcyannisrichard, puis nous avons lancé les commandes suivantes pour voir et modifier le lien git entre heroku et notre dossier local :
+ heroku git:remote -a checkaccountsvcyannisrichard
+Vérifier que le lien est Ok :  git remote -v
+
+9) Vérifier service actif et logs :
+heroku ps et heroku ps:scale web=1
+heroku logs --tail

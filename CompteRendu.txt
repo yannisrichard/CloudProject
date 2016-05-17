@@ -1,0 +1,54 @@
+Compte Rendu Yannis Richard - Clément Thuaire :
+
+Au sujet de l'organisation du travail, nous avons fait le projet ensemble en suivant la méthode agile d'extreme programming. :)
+
+Au niveau de l'architecture du projet, nous avons les 4 services suivants :
+ - AccManagerSvc
+ - AppManagerSvc
+ - CheckAccountSvc
+ - LoanApprovalSvc
+Ainsi que les fichiers txt suivants :
+ - Requêtes Curl
+ - Créer un projet Maven et Déploiement Héroku
+ - CompteRendu
+
+Les services AccManagerSvc et AppManagerSvc ont était fait en créant un projet GAE sur eclipse.
+Les deux services sont disponibles aux addresses suivantes :
+	http://1-dot-accmanagersvc.appspot.com/
+	http://1-dot-appmanagersvc.appspot.com/
+Et on peut les tester avec les requêtes CURL présentes dans le fichier "Requête Curl.txt" afin de tester l'ajout, suppression, listing des comptes bancaires et approvals demandées par le sujet.
+Pour faciliter le test de l'application il est intérressant de lancer les requêtes Curl dans l'ordre où elles sont présentes dans le fichier bien que si l'ordre n'est pas suivit l'application fonctionne quand même.
+
+Ensuite les services CheckAccountSvc et LoanApprovalSvc ont été crée en initialisant un projet Maven comme nous l'avions vu en TP, avec la commande suivante :
+mvn archetype:generate -DarchetypeArtifactId=jersey-heroku-webapp -DarchetypeGroupId=org.glassfish.jersey.archetypes -DinteractiveMode=false -DgroupId=wsrest -DartifactId=CheckAccountSvc -Dpackage=wsrest -DarchetypeVersion=2.22.
+(Changer DartifactId pour LoanApprovalSvc dans le second service)
+La suite des étapes de la création de nos services sur heroku peuvent être trouvées dans le fichier suivant "Créer un projet Maven et Déploement Héroku.txt"
+
+Nous avons ensuite déployé nos deux projets sur Heroku aux adresses suivantes :
+https://checkaccountsvcyannisrichard.herokuapp.com/
+https://loanapprovalsvcyannisrichard.herokuapp.com/
+
+Mais nous avons rencontré un problème lorsque nous avons voulu tester nos services à l'aide des requêtes CURL présentes toujours dans le même fichier que précédemment, Eclipse ne souligne pas d'erreur dans nos projets mais lorsque nous avons lancé la commande :
+heroku ps : Nous avons vu que notre service web est bien actif.
+heroku logs --tail : Nous avons vu que le service plante à cause de
+
+Nous avons donc également testé l'application en locale avec jetty en lançant la commande :
+mvn clean package jetty:run
+Et nous avons remarqué que le service web n'arrive pas à builder à cause de l'erreur suivante :
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 5.134 s
+[INFO] Finished at: 2016-04-17T19:22:28+02:00
+[INFO] Final Memory: 29M/271M
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.eclipse.jetty:jetty-maven-plugin:9.0.6.v20130930:run (default-cli) on project CheckAccountSvc: Execution default-cli of goal org.eclipse.jetty:jetty-maven-plugin:9.0.6.v20130930:run failed: An API incompatibility was encountered while executing org.eclipse.jetty:jetty-maven-plugin:9.0.6.v20130930:run: java.lang.NoSuchMethodError: javax.ws.rs.core.Application.getProperties()Ljava/util/Map;
+
+Mais nous n'avons pas réussis à trouver d'où venait l'api incompatible malgré le message d'erreur, quand nous avons cherché sur google l'erreur suivante "
+An API incompatibility was encountered while executing org.eclipse.jetty:jetty-maven-plugin:9.0.6.v20130930:run: java.lang.NoSuchMethodError: javax.ws.rs.core.Application.getProperties()Ljava/util/Map;
+"
+Nous n'avons rien trouvé, un seul résultat inutile.
+Ensuite nous avons fais une recherche moins précis et tomber sur ce sujet sur stakoverflow qui ressemble à notre problème mais nous n'avons pas réussis à trouver d'où venait le problème de dépendance.
+http://stackoverflow.com/questions/30637146/how-to-struggle-dependencies-problems-in-maven
+Nous avons supprimé la dépendance inutile "com.sun.jersey json package" comme dit dans le sujet mais sans résultat malheureusement.
+
+Il est toutefois possible de retrouver les requêtes CURL que nous aurions lancé si le service web builder correctement dans le fichier "Requêtes Curl.txt" qui aurait servit à tester les fonctionnalités de nôtre service.
